@@ -6,18 +6,17 @@ const tokenCount = document.getElementById('token-count');
 const charCount = document.getElementById('char-count');
 const wordCount = document.getElementById('word-count');
 
-function getColorForTokenId(tokenId) {
-    // Use token ID directly for color generation (consistent colors)
-    const hash = Math.abs(tokenId);
-
-    // Generate vibrant colors using HSL
-    const hue = hash % 360;
-    const saturation = 65 + (hash % 20); // 65-85%
-    const lightness = 85 + (hash % 10); // 85-95% for light backgrounds
+function getColorForIndex(index) {
+    // Generate color based on token position/index
+    // Use golden ratio for better color distribution
+    const goldenRatio = 0.618033988749895;
+    const hue = (index * goldenRatio * 360) % 360;
+    const saturation = 60 + ((index * 17) % 25); // 60-85%
+    const lightness = 80 + ((index * 13) % 12); // 80-92% for light backgrounds
 
     const bgColor = `hsl(${hue}, ${saturation}%, ${lightness}%)`;
     const borderColor = `hsl(${hue}, ${saturation}%, ${lightness - 20}%)`;
-    const textColor = `hsl(${hue}, ${saturation + 10}%, ${lightness - 55}%)`;
+    const textColor = `hsl(${hue}, ${saturation + 15}%, ${lightness - 60}%)`;
 
     return { bgColor, borderColor, textColor };
 }
@@ -53,8 +52,8 @@ function updateTokens() {
         tokensContainer.innerHTML = '<div class="empty-state">Tokens will appear here...</div>';
     } else {
         tokensContainer.innerHTML = tokens
-            .map(token => {
-                const { bgColor, borderColor, textColor } = getColorForTokenId(token.id);
+            .map((token, index) => {
+                const { bgColor, borderColor, textColor } = getColorForIndex(index);
                 return `<span class="token" style="background-color: ${bgColor}; border: 1px solid ${borderColor}; color: ${textColor};">${escapeHtml(token.text)}</span>`;
             })
             .join('');
