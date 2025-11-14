@@ -75,6 +75,33 @@ Tokens Codex is now a sleek React + Vite experience powered by shadcn/ui compone
 | `make preview` | Preview the `dist/` output locally     |
 | `make clean`   | Remove the `dist/` directory           |
 
+## Deploy to GitHub Pages
+
+### Quick push via CLI
+
+1. Ensure `git remote` is set and Pages is configured for the `gh-pages` branch.
+2. Build & publish:
+
+   ```bash
+   bun run deploy
+   ```
+
+   This runs the production build, duplicates `dist/index.html` as `dist/404.html` for SPA routing, and pushes `dist/` to the `gh-pages` branch using the [gh-pages](https://github.com/tschaub/gh-pages) helper.
+
+### Continuous deployment via GitHub Actions
+
+The repo includes `.github/workflows/deploy.yml` which builds on every push to `main` and deploys to GitHub Pages automatically. Enable Pages → Source: “GitHub Actions” in the repository settings.
+
+### Base path configuration
+
+When hosting at `https://<user>.github.io/<repo>/`, Vite’s `base` must match the repository name. By default we derive it from the `GITHUB_REPOSITORY` env var; override it locally with:
+
+```bash
+VITE_BASE_PATH=/ bun run build
+```
+
+or set `"VITE_BASE_PATH": "/custom/"` in your environment if the deploy target differs from the repo path.
+
 ## Deploying
 
 The build output lives in `dist/` and is a static bundle, so publishing to GitHub Pages is as simple as uploading that folder (e.g., via `gh-pages` or GitHub Actions) whenever you are ready.
