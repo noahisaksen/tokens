@@ -27,10 +27,28 @@
             box-shadow: 0 2px 4px rgba(0,0,0,0.05);
         }
 
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
         h1 {
             font-size: 1.5rem;
             font-weight: 600;
             color: #1a1a1a;
+        }
+
+        .nav-links a {
+            margin-left: 1.5rem;
+            color: #4a90e2;
+            text-decoration: none;
+            font-size: 0.95rem;
+            transition: color 0.2s;
+        }
+
+        .nav-links a:hover {
+            color: #357abd;
         }
 
         .container {
@@ -135,7 +153,13 @@
 </head>
 <body>
     <header>
-        <h1>Text Tokenizer</h1>
+        <nav>
+            <h1>Text Tokenizer</h1>
+            <div class="nav-links">
+                <a href="/">Tokenizer</a>
+                <a href="/compare.html">Compare Formats</a>
+            </div>
+        </nav>
     </header>
 
     <div class="container">

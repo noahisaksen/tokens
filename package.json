@@ -1,5 +1,9 @@
 {
   "dependencies": {
-    "gpt-tokenizer": "^3.4.0"
+    "gpt-tokenizer": "^3.4.0",
+    "papaparse": "^5.5.3"
+  },
+  "devDependencies": {
+    "shadcn": "^3.5.0"
   }
 }

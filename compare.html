@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Format Token Comparison</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            background: #f5f5f5;
+            color: #333;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        header {
+            background: white;
+            padding: 1.5rem 2rem;
+            border-bottom: 1px solid #e0e0e0;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        h1 {
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: #1a1a1a;
+        }
+
+        .nav-links a {
+            margin-left: 1.5rem;
+            color: #4a90e2;
+            text-decoration: none;
+            font-size: 0.95rem;
+            transition: color 0.2s;
+        }
+
+        .nav-links a:hover {
+            color: #357abd;
+        }
+
+        main {
+            flex: 1;
+            padding: 2rem;
+            max-width: 1400px;
+            width: 100%;
+            margin: 0 auto;
+        }
+
+        .input-section {
+            background: white;
+            padding: 2rem;
+            border-radius: 8px;
+            margin-bottom: 2rem;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+        }
+
+        .input-section h2 {
+            font-size: 0.875rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            color: #666;
+            margin-bottom: 1rem;
+            font-weight: 600;
+        }
+
+        #csv-input {
+            width: 100%;
+            min-height: 150px;
+            padding: 1rem;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            font-size: 0.95rem;
+            font-family: 'SF Mono', Monaco, 'Cascadia Code', 'Courier New', monospace;
+            resize: vertical;
+            background: white;
+            line-height: 1.6;
+        }
+
+        #csv-input:focus {
+            outline: none;
+            border-color: #4a90e2;
+        }
+
+        .results-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .format-card {
+            background: white;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+        }
+
+        .format-header {
+            padding: 1rem 1.5rem;
+            border-bottom: 1px solid #e0e0e0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .format-title {
+            font-weight: 600;
+            font-size: 1rem;
+            color: #1a1a1a;
+        }
+
+        .token-badge {
+            background: #4a90e2;
+            color: white;
+            padding: 0.25rem 0.75rem;
+            border-radius: 12px;
+            font-size: 0.875rem;
+            font-weight: 600;
+        }
+
+        .format-content {
+            padding: 1.5rem;
+            max-height: 300px;
+            overflow-y: auto;
+        }
+
+        .format-content pre {
+            margin: 0;
+            font-family: 'SF Mono', Monaco, 'Cascadia Code', 'Courier New', monospace;
+            font-size: 0.875rem;
+            line-height: 1.8;
+            white-space: pre-wrap;
+            word-wrap: break-word;
+        }
+
+        .token {
+            display: inline;
+            padding: 0.15rem 0.25rem;
+            margin: 0 1px;
+            border-radius: 3px;
+            font-weight: 500;
+        }
+
+        .chart-section {
+            background: white;
+            padding: 2rem;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+        }
+
+        .chart-section h2 {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: #1a1a1a;
+            margin-bottom: 1.5rem;
+        }
+
+        .chart-container {
+            width: 100%;
+        }
+
+        .bar-chart {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+
+        .bar-row {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .bar-label {
+            min-width: 140px;
+            font-size: 0.95rem;
+            font-weight: 600;
+            color: #333;
+            text-align: right;
+        }
+
+        .bar-container {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .bar {
+            height: 32px;
+            background: linear-gradient(to right, #4a90e2, #64b5f6);
+            border-radius: 4px;
+            position: relative;
+            transition: all 0.3s;
+            min-width: 40px;
+        }
+
+        .bar:hover {
+            filter: brightness(1.1);
+            transform: scaleX(1.02);
+            transform-origin: left;
+        }
+
+        .bar-value {
+            font-size: 0.9rem;
+            font-weight: 600;
+            color: #666;
+            white-space: nowrap;
+        }
+
+        .empty-state {
+            color: #999;
+            font-style: italic;
+            text-align: center;
+            padding: 2rem;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav>
+            <h1>Format Token Comparison</h1>
+            <div class="nav-links">
+                <a href="/">Tokenizer</a>
+                <a href="/compare.html">Compare Formats</a>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <div class="input-section">
+            <h2>Input Data (CSV, JSON, Markdown, or TOML)</h2>
+            <textarea id="csv-input">name,age,city
+Alice,30,New York
+Bob,25,San Francisco
+Charlie,35,Boston</textarea>
+        </div>
+
+        <div class="results-grid" id="results-grid">
+            <div class="empty-state">Paste CSV data above to see format comparisons...</div>
+        </div>
+
+        <div class="chart-section" id="chart-section" style="display: none;">
+            <h2>Token Usage Comparison</h2>
+            <div class="chart-container">
+                <div class="bar-chart" id="bar-chart"></div>
+            </div>
+        </div>
+    </main>
+
+    <script type="module" src="/compare-bundle.js"></script>
+</body>
+</html>

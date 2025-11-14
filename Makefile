@@ -7,13 +7,14 @@ help: ## Show this help message
 install: ## Install dependencies
 	bun install
 
-build: ## Build the JavaScript bundle
+build: ## Build the JavaScript bundles
 	bun build src.js --outfile=bundle.js --target=browser
+	bun build compare.js --outfile=compare-bundle.js --target=browser
 
 dev: build ## Build and start the development server
 	bun run server.ts
 
 clean: ## Remove built files
-	rm -f bundle.js client.js
+	rm -f bundle.js compare-bundle.js client.js
 
 rebuild: clean build ## Clean and rebuild the bundle

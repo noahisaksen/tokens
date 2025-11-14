@@ -13,6 +13,16 @@ const server = Bun.serve({
       });
     }
 
+    if (url.pathname === "/compare.html") {
+      return new Response(Bun.file("compare.html"));
+    }
+
+    if (url.pathname === "/compare-bundle.js") {
+      return new Response(Bun.file("compare-bundle.js"), {
+        headers: { "Content-Type": "application/javascript" }
+      });
+    }
+
     return new Response("Not Found", { status: 404 });
   },
 });
