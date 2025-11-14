@@ -6,6 +6,7 @@ Tokens Codex is now a sleek React + Vite experience powered by shadcn/ui compone
 
 - **Tokenizer Playground** – Live encoding with the official `cl100k_base` tokenizer, vivid token chips, and running stats for characters and words.
 - **Format Comparison Lab** – Paste CSV/JSON/Markdown/TOML, convert them instantly, and see which form is the most token-efficient with a responsive chart.
+- **Portfolio-ready landing page** – A modern dark-first homepage with routing between tools, navigation, and theme toggle.
 - **Modern UI** – Built with shadcn tabs, cards, badges, scroll areas, and textarea primitives on top of Tailwind CSS.
 - **Local-first** – Everything runs client-side; no API keys or servers required, making a future GitHub Pages deploy straightforward.
 

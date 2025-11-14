@@ -22,7 +22,7 @@ const TokenizerPanel = () => {
 
   return (
     <div className="grid gap-6 lg:grid-cols-2">
-      <Card className="h-full border-slate-200">
+      <Card className="h-full border-slate-800 bg-slate-900/70">
         <CardHeader className="space-y-2">
           <Badge variant="secondary" className="w-fit text-xs uppercase tracking-wide">
             Input
@@ -42,7 +42,7 @@ const TokenizerPanel = () => {
         </CardContent>
       </Card>
 
-      <Card className="h-full border-slate-200">
+      <Card className="h-full border-slate-800 bg-slate-900/70">
         <CardHeader className="space-y-2">
           <Badge variant="secondary" className="w-fit text-xs uppercase tracking-wide">
             Tokens
@@ -59,9 +59,9 @@ const TokenizerPanel = () => {
         </CardHeader>
 
         <CardContent className="space-y-4">
-          <ScrollArea className="h-[420px] rounded-xl border border-dashed border-slate-200 bg-slate-50/60 p-4">
+          <ScrollArea className="h-[420px] rounded-xl border border-dashed border-slate-800 bg-slate-950/60 p-4">
             {segments.length === 0 ? (
-              <div className="flex h-full items-center justify-center text-sm text-muted-foreground">
+              <div className="flex h-full items-center justify-center text-sm text-slate-400">
                 Tokens will show up here as soon as you start typing.
               </div>
             ) : (
@@ -98,9 +98,9 @@ const TokenizerPanel = () => {
 }
 
 const Stat = ({ label, value }: { label: string; value: number }) => (
-  <div className="rounded-xl border border-slate-200 bg-white px-4 py-3 shadow-sm">
-    <p className="text-xs uppercase tracking-[0.16em] text-muted-foreground">{label}</p>
-    <p className="text-2xl font-semibold text-slate-900">{value.toLocaleString()}</p>
+  <div className="rounded-xl border border-slate-800/80 bg-slate-950/70 px-4 py-3 shadow-inner">
+    <p className="text-xs uppercase tracking-[0.16em] text-slate-400">{label}</p>
+    <p className="text-2xl font-semibold text-white">{value.toLocaleString()}</p>
   </div>
 )
 

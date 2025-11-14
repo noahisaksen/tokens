@@ -67,7 +67,7 @@ const FormatComparison = () => {
 
   return (
     <div className="space-y-6">
-      <Card className="border-slate-200">
+      <Card className="border-slate-800 bg-slate-900/70">
         <CardHeader className="space-y-2">
           <Badge variant="secondary" className="w-fit text-xs uppercase tracking-wide">
             Dataset
@@ -89,7 +89,7 @@ const FormatComparison = () => {
       </Card>
 
       {results.length === 0 && !error ? (
-        <div className="rounded-2xl border border-dashed border-slate-200 bg-slate-50/60 p-8 text-center text-muted-foreground">
+        <div className="rounded-2xl border border-dashed border-slate-800 bg-slate-950/40 p-8 text-center text-slate-400">
           Provide a dataset above to generate comparisons.
         </div>
       ) : null}
@@ -97,7 +97,7 @@ const FormatComparison = () => {
       {results.length > 0 && (
         <div className="grid gap-4 lg:grid-cols-2">
           {results.map((result) => (
-            <Card key={result.name} className="border-slate-200">
+            <Card key={result.name} className="border-slate-800 bg-slate-900/70">
               <CardHeader className="flex flex-row items-center justify-between space-y-0">
                 <div>
                   <CardTitle className="text-xl">{result.name}</CardTitle>
@@ -106,8 +106,8 @@ const FormatComparison = () => {
                 <Badge>{result.tokens.toLocaleString()} tokens</Badge>
               </CardHeader>
               <CardContent>
-                <ScrollArea className="h-[260px] rounded-lg border border-slate-100 bg-slate-50/50 p-4">
-                  <pre className="whitespace-pre-wrap text-sm font-mono leading-6 text-slate-700">
+                <ScrollArea className="h-[260px] rounded-lg border border-slate-800 bg-slate-950/50 p-4">
+                  <pre className="whitespace-pre-wrap text-sm font-mono leading-6 text-slate-200">
                     {result.segments.map((segment, index) => {
                       const colors = getColorForIndex(index)
                       return (
@@ -133,7 +133,7 @@ const FormatComparison = () => {
       )}
 
       {chartResults.length > 0 && (
-        <Card className="border-slate-200">
+        <Card className="border-slate-800 bg-slate-900/70">
           <CardHeader className="space-y-2">
             <CardTitle>Token usage by format</CardTitle>
             <CardDescription>Find the most efficient storage format for your dataset.</CardDescription>
@@ -144,18 +144,18 @@ const FormatComparison = () => {
                 largestTokenValue === 0 ? 0 : Math.max((item.tokens / largestTokenValue) * 100, 5)
               return (
                 <div key={`${item.name}-${index}`} className="flex flex-col gap-2 lg:flex-row lg:items-center">
-                  <div className="flex items-center gap-2 text-sm font-medium text-slate-600">
-                    <span className="text-xs font-semibold text-slate-400">{index + 1}.</span>
+                  <div className="flex items-center gap-2 text-sm font-medium text-slate-200">
+                    <span className="text-xs font-semibold text-slate-500">{index + 1}.</span>
                     {item.name}
                   </div>
                   <div className="flex flex-1 items-center gap-3">
-                    <div className="h-3 flex-1 rounded-full bg-slate-100">
+                    <div className="h-3 flex-1 rounded-full bg-slate-800">
                       <div
-                        className="h-3 rounded-full bg-gradient-to-r from-blue-500 to-cyan-400"
+                        className="h-3 rounded-full bg-gradient-to-r from-blue-500 via-cyan-400 to-teal-300"
                         style={{ width: `${width}%` }}
                       />
                     </div>
-                    <span className="text-sm text-slate-500">{item.tokens.toLocaleString()} tokens</span>
+                    <span className="text-sm text-slate-400">{item.tokens.toLocaleString()} tokens</span>
                   </div>
                 </div>
               )

@@ -1,0 +1,48 @@
+import { Link, NavLink } from 'react-router-dom'
+import { Sparkles } from 'lucide-react'
+
+import { Button } from '@/components/ui/button'
+import { cn } from '@/lib/utils'
+import { ThemeToggle } from '@/components/theme-toggle'
+
+const SiteHeader = () => {
+  return (
+    <header className="sticky top-0 z-40 border-b border-slate-800/50 bg-slate-950/80 backdrop-blur-lg">
+      <div className="mx-auto flex max-w-6xl items-center justify-between px-4 py-4 sm:px-6">
+        <Link to="/" className="flex items-center gap-2 font-semibold tracking-tight text-white">
+          <Sparkles className="h-5 w-5 text-amber-300" />
+          Tokens Codex
+        </Link>
+
+        <nav className="flex items-center gap-4 text-sm font-medium text-slate-300">
+          <HeaderLink to="/">Home</HeaderLink>
+          <HeaderLink to="/tokenizer">Tokenizer</HeaderLink>
+          <HeaderLink to="/compare">Format Studio</HeaderLink>
+        </nav>
+
+        <div className="flex items-center gap-2">
+          <ThemeToggle />
+          <Button asChild variant="outline" size="sm" className="hidden border-slate-700 text-slate-100 md:flex">
+            <Link to="/tokenizer">Launch App</Link>
+          </Button>
+        </div>
+      </div>
+    </header>
+  )
+}
+
+const HeaderLink = ({ to, children }: { to: string; children: React.ReactNode }) => (
+  <NavLink
+    to={to}
+    className={({ isActive }) =>
+      cn(
+        'transition-colors hover:text-white',
+        isActive ? 'text-white' : 'text-slate-400',
+      )
+    }
+  >
+    {children}
+  </NavLink>
+)
+
+export { SiteHeader }
