@@ -94,13 +94,13 @@ The repo includes `.github/workflows/deploy.yml` which builds on every push to `
 
 ### Base path configuration
 
-When hosting at `https://<user>.github.io/<repo>/`, Vite’s `base` must match the repository name. By default we derive it from the `GITHUB_REPOSITORY` env var; override it locally with:
+When hosting at `https://<user>.github.io/<repo>/`, Vite and React Router must both know the sub-path. This project defaults to `/tokens-codex/` (the current repo). If your repository name changes, override it:
 
 ```bash
-VITE_BASE_PATH=/ bun run build
+VITE_BASE_PATH=/your-repo-name/ bun run build
 ```
 
-or set `"VITE_BASE_PATH": "/custom/"` in your environment if the deploy target differs from the repo path.
+The `deploy` script respects `VITE_BASE_PATH`, and the router automatically aligns with `import.meta.env.BASE_URL`.
 
 ## Deploying
 
