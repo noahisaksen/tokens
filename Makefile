@@ -1,4 +1,4 @@
-.PHONY: install build dev clean help
+.PHONY: install build dev clean help preview
 
 help: ## Show this help message
 	@echo "Available commands:"
@@ -7,14 +7,14 @@ help: ## Show this help message
 install: ## Install dependencies
 	bun install
 
-build: ## Build the JavaScript bundles
-	bun build src.js --outfile=bundle.js --target=browser
-	bun build compare.js --outfile=compare-bundle.js --target=browser
+build: ## Build the production bundle
+	bun run build
 
-dev: build ## Build and start the development server
-	bun run server.ts
+dev: ## Start the development server
+	bun run dev
 
-clean: ## Remove built files
-	rm -f bundle.js compare-bundle.js client.js
+preview: build ## Preview the production build locally
+	bun run preview
 
-rebuild: clean build ## Clean and rebuild the bundle
+clean: ## Remove build output
+	rm -rf dist

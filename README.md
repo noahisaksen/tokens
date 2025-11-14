@@ -1,138 +1,82 @@
 # GPT Text Tokenizer
 
-A clean, minimalistic web application that tokenizes text using GPT's tokenization algorithm (cl100k_base encoding). All tokenization happens client-side in the browser - no server calls required!
+Tokens Codex is now a sleek React + Vite experience powered by shadcn/ui components. Visualize GPT tokenization in real time and compare how different formats impact token counts – all in the browser.
 
-## Features
+## Highlights
 
-### Text Tokenizer
-- Real-time GPT tokenization using BPE (Byte Pair Encoding)
-- Client-side processing - all tokenization runs in your browser
-- Beautiful, colorful token visualization with unique colors per token position
-- Live statistics: token count, character count, and word count
-- Clean, minimalistic UI
+- **Tokenizer Playground** – Live encoding with the official `cl100k_base` tokenizer, vivid token chips, and running stats for characters and words.
+- **Format Comparison Lab** – Paste CSV/JSON/Markdown/TOML, convert them instantly, and see which form is the most token-efficient with a responsive chart.
+- **Modern UI** – Built with shadcn tabs, cards, badges, scroll areas, and textarea primitives on top of Tailwind CSS.
+- **Local-first** – Everything runs client-side; no API keys or servers required, making a future GitHub Pages deploy straightforward.
 
-### Format Comparison Tool
-- Compare token usage across different data formats
-- Converts CSV to JSON, Markdown Table, and TOML
-- Visual bar chart comparing token counts
-- See which format is most token-efficient for your data
-- All processing happens client-side
+## Stack
 
-## Prerequisites
-
-- [Bun](https://bun.sh/) - A fast JavaScript runtime
+- [React](https://react.dev/) + [Vite](https://vite.dev/) + [TypeScript](https://www.typescriptlang.org/)
+- [Tailwind CSS](https://tailwindcss.com/) + [shadcn/ui](https://ui.shadcn.com/) components
+- [gpt-tokenizer](https://www.npmjs.com/package/gpt-tokenizer) for exact GPT token math
+- [PapaParse](https://www.papaparse.com/) for CSV parsing
 
 ## Getting Started
 
-### 1. Install Dependencies
+1. **Install dependencies**
 
-```bash
-make install
-```
+   ```bash
+   make install
+   ```
 
-This installs the `gpt-tokenizer` package and other dependencies.
+2. **Start the dev server**
 
-### 2. Build the Bundle
+   ```bash
+   make dev
+   ```
 
-```bash
-make build
-```
+   Vite serves the app at `http://localhost:5173` by default with hot module reload.
 
-This bundles the client-side JavaScript (including the GPT tokenizer) into `bundle.js`. The bundle is ~2.2MB and contains all the tokenization logic.
+3. **Create a production build**
 
-### 3. Start the Development Server
+   ```bash
+   make build
+   ```
 
-```bash
-make dev
-```
+4. **Preview the production bundle**
 
-This builds the bundle and starts a local server at `http://localhost:3000`.
-
-Open your browser and navigate to `http://localhost:3000` to use the tokenizer!
-
-## Pages
-
-- **`/`** - Text Tokenizer: Visualize how text gets tokenized
-- **`/compare.html`** - Format Comparison: Compare token usage across CSV, JSON, Markdown, and TOML formats
-
-## Development Workflow
-
-### First Time Setup
-
-```bash
-make install    # Install dependencies
-make dev        # Build and start server
-```
-
-### After Making Changes
-
-If you modify `src.js` or `compare.js`:
-
-```bash
-make build      # Rebuild both bundles
-```
-
-The server will automatically serve the new bundles on refresh.
-
-### Full Rebuild
-
-```bash
-make rebuild    # Clean old files and rebuild
-```
+   ```bash
+   make preview
+   ```
 
 ## Project Structure
 
 ```
 .
-├── index.html          # Text tokenizer page
-├── src.js              # Source JavaScript for tokenizer
-├── bundle.js           # Built tokenizer bundle (generated)
-├── compare.html        # Format comparison page
-├── compare.js          # Source JavaScript for comparison tool
-├── compare-bundle.js   # Built comparison bundle (generated)
-├── server.ts           # Bun server to serve the application
-├── Makefile            # Build and development commands
-└── README.md           # This file
+├── index.html
+├── src
+│   ├── components
+│   │   ├── format-comparison.tsx
+│   │   ├── tokenizer-panel.tsx
+│   │   └── ui/… (shadcn primitives)
+│   ├── lib
+│   │   └── token-helpers.ts
+│   ├── main.tsx
+│   └── index.css
+├── tailwind.config.ts
+├── tsconfig*.json
+├── vite.config.ts
+└── Makefile
 ```
 
-## How It Works
+## Commands
 
-### Text Tokenizer
-1. **Client-Side Tokenization**: The entire GPT tokenizer (~2.2MB) is bundled into `bundle.js` using Bun's bundler
-2. **No Server Calls**: All tokenization happens in JavaScript in your browser
-3. **Color Generation**: Each token position gets a consistent color using the golden ratio for even distribution
-4. **Real-Time Updates**: As you type, tokens are generated instantly
+| Command        | Description                            |
+| -------------- | -------------------------------------- |
+| `make install` | Install dependencies with Bun          |
+| `make dev`     | Run Vite dev server                    |
+| `make build`   | Type-check and create production build |
+| `make preview` | Preview the `dist/` output locally     |
+| `make clean`   | Remove the `dist/` directory           |
 
-### Format Comparison
-1. **CSV Parsing**: Uses PapaParse to parse CSV data in the browser
-2. **Format Conversion**: Converts parsed data to JSON, Markdown table, and TOML formats
-3. **Token Counting**: Each format is tokenized using GPT's tokenizer to count tokens
-4. **Visual Comparison**: Bar chart displays relative token usage across formats
+## Deploying
 
-## Available Commands
-
-Run `make help` to see all available commands:
-
-```bash
-make help       # Show available commands
-make install    # Install dependencies
-make build      # Build the JavaScript bundle
-make dev        # Build and start the development server
-make clean      # Remove built files
-make rebuild    # Clean and rebuild the bundle
-```
-
-## Stopping the Server
-
-Press `Ctrl+C` in the terminal where the server is running.
-
-## Technologies Used
-
-- [Bun](https://bun.sh/) - JavaScript runtime and bundler
-- [gpt-tokenizer](https://www.npmjs.com/package/gpt-tokenizer) - GPT tokenization library (cl100k_base encoding)
-- [PapaParse](https://www.papaparse.com/) - Fast CSV parser for the browser
-- Vanilla JavaScript - No frameworks needed!
-- HTML/CSS - Clean, modern UI
+The build output lives in `dist/` and is a static bundle, so publishing to GitHub Pages is as simple as uploading that folder (e.g., via `gh-pages` or GitHub Actions) whenever you are ready.
 
 ## License
 
