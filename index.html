@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Text Tokenizer</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            background: #f5f5f5;
+            color: #333;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        header {
+            background: white;
+            padding: 1.5rem 2rem;
+            border-bottom: 1px solid #e0e0e0;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+        }
+
+        h1 {
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: #1a1a1a;
+        }
+
+        .container {
+            display: flex;
+            flex: 1;
+            overflow: hidden;
+        }
+
+        .panel {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            padding: 2rem;
+        }
+
+        .panel h2 {
+            font-size: 0.875rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            color: #666;
+            margin-bottom: 1rem;
+            font-weight: 600;
+        }
+
+        #input-text {
+            flex: 1;
+            padding: 1rem;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-family: 'SF Mono', Monaco, 'Cascadia Code', 'Courier New', monospace;
+            resize: none;
+            background: white;
+            line-height: 1.6;
+            transition: border-color 0.2s;
+        }
+
+        #input-text:focus {
+            outline: none;
+            border-color: #4a90e2;
+        }
+
+        .divider {
+            width: 1px;
+            background: #e0e0e0;
+        }
+
+        #tokens-container {
+            flex: 1;
+            padding: 1rem;
+            background: white;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            overflow-y: auto;
+            font-family: 'SF Mono', Monaco, 'Cascadia Code', 'Courier New', monospace;
+            font-size: 0.95rem;
+            line-height: 1.8;
+        }
+
+        .token {
+            display: inline-block;
+            padding: 0.25rem 0.5rem;
+            margin: 0.25rem;
+            border-radius: 4px;
+            transition: all 0.2s;
+            font-weight: 500;
+            cursor: default;
+        }
+
+        .token:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+            filter: brightness(1.1);
+        }
+
+        .stats {
+            margin-top: 1rem;
+            padding: 1rem;
+            background: #f9f9f9;
+            border-radius: 8px;
+            font-size: 0.875rem;
+            color: #666;
+        }
+
+        .stats-item {
+            display: inline-block;
+            margin-right: 1.5rem;
+        }
+
+        .stats-value {
+            font-weight: 600;
+            color: #333;
+        }
+
+        .empty-state {
+            color: #999;
+            font-style: italic;
+            text-align: center;
+            padding: 2rem;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Text Tokenizer</h1>
+    </header>
+
+    <div class="container">
+        <div class="panel">
+            <h2>Input Text</h2>
+            <textarea id="input-text" placeholder="Type or paste your text here..."></textarea>
+        </div>
+
+        <div class="divider"></div>
+
+        <div class="panel">
+            <h2>Tokens</h2>
+            <div id="tokens-container">
+                <div class="empty-state">Tokens will appear here...</div>
+            </div>
+            <div class="stats">
+                <span class="stats-item">
+                    <span class="stats-value" id="token-count">0</span> tokens
+                </span>
+                <span class="stats-item">
+                    <span class="stats-value" id="char-count">0</span> characters
+                </span>
+                <span class="stats-item">
+                    <span class="stats-value" id="word-count">0</span> words
+                </span>
+            </div>
+        </div>
+    </div>
+
+    <script type="module" src="/bundle.js"></script>
+</body>
+</html>

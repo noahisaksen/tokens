@@ -1,0 +1,12 @@
+# Dependencies
+node_modules/
+
+# Build output
+bundle.js
+client.js
+
+# Lock files
+bun.lock
+
+# OS files
+.DS_Store
