@@ -8,9 +8,9 @@ const ThemeToggle = () => {
   return (
     <Button variant="ghost" size="icon" onClick={toggle} aria-label="Toggle theme">
       {theme === 'dark' ? (
-        <Sun className="h-5 w-5 text-amber-300" />
+        <Sun className="h-5 w-5 text-muted-foreground" />
       ) : (
-        <Moon className="h-5 w-5 text-slate-700" />
+        <Moon className="h-5 w-5 text-muted-foreground" />
       )}
     </Button>
   )
