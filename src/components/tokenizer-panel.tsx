@@ -6,7 +6,7 @@ import { ScrollArea } from '@/components/ui/scroll-area'
 import { Textarea } from '@/components/ui/textarea'
 import { getColorForIndex, tokenize } from '@/lib/token-helpers'
 
-const DEFAULT_TEXT = `Welcome to Tokens Codex.
+const DEFAULT_TEXT = `Welcome to Tokens.
 
 Paste any prompt, document, or dataset to visualize how GPT tokenizes your text in real time.`
 

@@ -1,6 +1,6 @@
 # GPT Text Tokenizer
 
-Tokens Codex is now a sleek React + Vite experience powered by shadcn/ui components. Visualize GPT tokenization in real time and compare how different formats impact token counts – all in the browser.
+Tokens is now a sleek React + Vite experience powered by shadcn/ui components. Visualize GPT tokenization in real time and compare how different formats impact token counts – all in the browser.
 
 ## Highlights
 

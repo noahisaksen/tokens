@@ -1,6 +1,5 @@
-import type { ReactNode } from 'react'
 import { Link } from 'react-router-dom'
-import { ArrowRight, Sparkles, SplitSquareHorizontal } from 'lucide-react'
+import { ArrowRight } from 'lucide-react'
 
 import { Button } from '@/components/ui/button'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
@@ -14,7 +13,7 @@ const HomePage = () => {
         </p>
         <h1 className="text-4xl font-bold tracking-tight sm:text-5xl">Practical tools. Zero fluff.</h1>
         <p className="text-lg text-muted-foreground">
-          Tokens Codex keeps things simple: a tokenizer that mirrors GPT exactly and a comparison studio
+          Tokens keeps things simple: a tokenizer that mirrors GPT exactly and a comparison studio
           for structured data. Everything runs locally so you can trust the counts.
         </p>
         <div className="flex flex-col justify-center gap-3 sm:flex-row">
@@ -34,13 +33,11 @@ const HomePage = () => {
         <ToolCard
           title="Tokenizer"
           description="Inspect prompts or docs with the official cl100k_base tokenizer. Instant stats, no API calls."
-          icon={<Sparkles className="h-5 w-5 text-primary" />}
           link="/tokenizer"
         />
         <ToolCard
           title="Format Studio"
           description="Paste CSV/JSON/Markdown/TOML and benchmark token cost with consistent parsing."
-          icon={<SplitSquareHorizontal className="h-5 w-5 text-primary" />}
           link="/compare"
         />
       </section>
@@ -51,25 +48,20 @@ const HomePage = () => {
 const ToolCard = ({
   title,
   description,
-  icon,
   link,
 }: {
   title: string
   description: string
-  icon: ReactNode
   link: string
 }) => (
   <Card className="border-border bg-card">
-    <CardHeader className="flex flex-row items-center gap-3">
-      <div className="rounded-md bg-muted p-2 text-primary">{icon}</div>
-      <div>
-        <CardTitle className="text-xl">{title}</CardTitle>
-        <CardDescription>{description}</CardDescription>
-      </div>
+    <CardHeader className="space-y-1">
+      <CardTitle className="text-xl">{title}</CardTitle>
+      <CardDescription>{description}</CardDescription>
     </CardHeader>
     <CardContent>
       <Button asChild variant="outline" size="sm">
-        <Link to={link}>Launch</Link>
+        <Link to={link}>Open</Link>
       </Button>
     </CardContent>
   </Card>

@@ -151,7 +151,7 @@ const FormatComparison = () => {
                   <div className="flex flex-1 items-center gap-3">
                     <div className="h-2 flex-1 rounded-full bg-muted">
                       <div
-                        className="h-2 rounded-full bg-primary"
+                        className="h-2 rounded-full bg-foreground/60"
                         style={{ width: `${width}%` }}
                       />
                     </div>
