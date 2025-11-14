@@ -43,7 +43,7 @@ const FormatComparison = () => {
     const formats = [
       { name: 'CSV', content: dataToCSV(parsed) },
       { name: 'JSON', content: dataToJSON(parsed) },
-      { name: 'Markdown Table', content: dataToMarkdown(parsed) },
+      { name: 'Markdown', content: dataToMarkdown(parsed) },
       { name: 'TOML', content: dataToTOML(parsed) },
     ]
 
